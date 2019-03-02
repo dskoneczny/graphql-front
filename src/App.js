@@ -29,7 +29,8 @@ class App extends Component {
         firstName: "John",
         lastName: "Doe"
       },
-      // optimisticUpdate
+      // optimisticUpdate - sprawdzic w dokumentacji
+      // Subscription - dokumentacja
       refetchQueries: ['getUsers']
     })
   }
