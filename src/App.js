@@ -11,6 +11,7 @@ const addUser = gql`
     }
   }
 `
+
 const getUsers = gql`
   query getUsers {
     getUsers {
@@ -22,26 +23,43 @@ const getUsers = gql`
 `
 
 class App extends Component {
+  addUser = (mutation) => () => {
+    mutation({
+      variables: {
+        firstName: "John",
+        lastName: "Doe"
+      },
+      // optimisticUpdate
+      refetchQueries: ['getUsers']
+    })
+  }
   render() {
     return (
       <div className="App">
-        <Query query={getUsers}>
-          {query => {
-            if (query.loading) {
-              return 'Loading...'
-            }
-
-            return query.data.getUsers.map(item => {
-              return (
-                <div key={item.id}>
-                  {item.firstName}&nbsp;
-                  {item.lastName}
-                </div>
-              )
-            })
-
+        <Mutation mutation={addUser}>
+          {mutation => {
+            return <button onClick={this.addUser(mutation)}>Dodaj uzytkownika</button>
           }}
-        </Query>
+        </Mutation>
+        <div style={{marginTop: 100}}>
+          <Query query={getUsers}>
+            {query => {
+              if (query.loading) {
+                return 'Loading...'
+              }
+
+              return query.data.getUsers.map(item => {
+                return (
+                  <div key={item.id}>
+                    {item.firstName}&nbsp;
+                    {item.lastName}
+                  </div>
+                )
+              })
+
+            }}
+          </Query>
+        </div>
       </div>
     );
   }
