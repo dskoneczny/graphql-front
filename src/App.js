@@ -19,11 +19,16 @@ class App extends Component {
       <div className="App">
         <Query query={getUsers}>
           {query => {
-            console.log('QUERY', query)
-            return 'Hello'
+            if (query.loading) {
+              return 'Loading...'
+            }
+
+            return query.data.getUsers.map(item => {
+              return <div>{item.firstName}</div>
+            })
+
           }}
         </Query>
-        Hello
       </div>
     );
   }
