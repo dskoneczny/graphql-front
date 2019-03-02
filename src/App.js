@@ -9,6 +9,7 @@ const getUsers = gql`
     getUsers {
       id
       firstName
+      lastName
     }
   }
 `
@@ -24,7 +25,12 @@ class App extends Component {
             }
 
             return query.data.getUsers.map(item => {
-              return <div>{item.firstName}</div>
+              return (
+                <div key={item.id}>
+                  {item.firstName}&nbsp;
+                  {item.lastName}
+                </div>
+              )
             })
 
           }}
