@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
 // IMPORT:
-import { Query } from 'react-apollo'
+import { Query, Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 
+const addUser = gql`
+  mutation addUser($firstName: String!, $lastName: String!) {
+    addUser(firstName: $firstName, lastName: $lastName) {
+      id
+    }
+  }
+`
 const getUsers = gql`
   query getUsers {
     getUsers {
