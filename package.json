@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1",
     "react": "^16.8.3",
+    "react-apollo": "^2.5.1",
     "react-dom": "^16.8.3",
     "react-scripts": "2.1.5"
   },
